@@ -1,0 +1,65 @@
+@font-face {
+  font-family: 'harry_pregular';
+    src: url('./harry-p-font/webfontkit-20200412-142210/harryp-mvz6w-webfont.woff2') format('woff2'),
+         url('./harry-p-font/webfontkit-20200412-142210/harryp-mvz6w-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background: rgb(73, 72, 64);
+  font-family: 'harry_pregular';
+}
+
+.sorting-hat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sorting-hat h1 {
+  font-family: 'harry_pregular';
+  font-size: 72px;
+  background: -webkit-linear-gradient(#e0c737, #555);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 60px;
+}
+
+.sorting-hat img {
+  width: 500px;
+}
+
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-25px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+
+img[alt="Sorting Hat"] {
+  transform: translatey(0px);
+  filter: drop-shadow(7px 15px 10px #110);
+	animation: float 6s ease-in-out infinite;
+}
+
+.photoMessage {
+  position: relative;
+  top: -280px;
+  z-index: -1;
+}
+
+.message {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  font-size: 30px;
+  text-align: center;
+  word-break: normal;
+}
