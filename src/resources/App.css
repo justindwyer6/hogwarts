@@ -1,13 +1,21 @@
 @font-face {
   font-family: 'harry_pregular';
-    src: url('./harry-p-font/webfontkit-20200412-142210/harryp-mvz6w-webfont.woff2') format('woff2'),
-         url('./harry-p-font/webfontkit-20200412-142210/harryp-mvz6w-webfont.woff') format('woff');
+  src: url('./harry-p-font/webfontkit-20200412-142210/harryp-mvz6w-webfont.woff2') format('woff2'),
+       url('./harry-p-font/webfontkit-20200412-142210/harryp-mvz6w-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'ramona_handwritingregular';
+  src: url('./ramona-font/ramonahandwritingregular-xvok-webfont.woff2') format('woff2'),
+       url('./ramona-font/ramonahandwritingregular-xvok-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
 
 body {
-  background: rgb(73, 72, 64);
+  background: rgb(149, 149, 149);
   font-family: 'harry_pregular';
 }
 
@@ -17,14 +25,20 @@ body {
   align-items: center;
 }
 
-.sorting-hat h1 {
+h1 {
   font-family: 'harry_pregular';
-  font-size: 72px;
-  background: -webkit-linear-gradient(#e0c737, #555);
+  font-size: 100px;
+  /* background: -webkit-linear-gradient(#ffda02, #544800);
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 60px;
+  -webkit-text-fill-color: transparent; */
+  font-size: 65px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 40px;
+  margin: 0;
 }
 
 .sorting-hat img {
@@ -49,17 +63,66 @@ img[alt="Sorting Hat"] {
 	animation: float 6s ease-in-out infinite;
 }
 
-.photoMessage {
+.messageContainer {
   position: relative;
-  top: -280px;
+  top: -20px;
   z-index: -1;
 }
 
 .message {
+  font-family: 'ramona_handwritingregular';
   width: 100%;
-  position: absolute;
-  bottom: 0;
-  font-size: 30px;
+  font-size: 24px;
   text-align: center;
   word-break: normal;
+}
+
+span.house {
+  border: none;
+}
+
+.Home {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  justify-items: center;
+}
+
+section.house {
+  font-size: 60px;
+  border: 2px solid;
+  border-radius: 5%;
+  width: 400px;
+  height: 400px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+section.house p {
+  margin: 25px;
+}
+section.house hr {
+  background-color: black;
+  border: none;
+  height: 2px;
+  margin: 0;
+}
+
+.Login {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.Login button {
+  font-family: 'harry_pregular';
+  font-size: 100px;
+  animation: float 6s ease-in-out infinite;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
