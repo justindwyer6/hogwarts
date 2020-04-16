@@ -1,17 +1,27 @@
 import React from "react";
-import { Router } from "@reach/router";
-import "../resources/App.css";
-import firebaseConfig from "../firebase.js";
+// import { Router } from "@reach/router";
 import firebase from "firebase";
+import base, { firebaseApp } from "../base.js";
 import Login from "./Login";
 import SortingHat from "./SortingHat";
 import Home from "./Home";
+import "../resources/App.css";
 
 class App extends React.Component {
 
   state = {
-    user: null,
     student: null
+  }
+
+  componentWillMount() {
+    if (this.state.student) {
+      const emailRegEx = /@.*\.com/;
+      const studentId = this.state.student.email.replace(emailRegEx, "");
+      this.ref = base.syncState(`students/${studentId}`, {
+        context: this,
+        state: this.state.student
+      });
+    }
   }
 
   componentDidMount() {
@@ -20,78 +30,109 @@ class App extends React.Component {
         this.authHandler({ user });
       }
     });
+    // if (this.state.student) {
+      // const emailRegEx = /@.*\.com/;
+      // const studentId = this.state.student.email.replace(emailRegEx, "");
+      // this.studentRef = base.syncState(`/students/${studentId}`, {
+      //   context: this,
+      //   state: 'student'
+      // });
+    // }
+  }
+
+  // componentDidUpdate() {
+  //   firebase.auth().onAuthStateChanged(user => {
+  //     if(user) {
+  //       this.authHandler({ user });
+  //     }
+  //   });
+  // }
+
+  componentWillUnmount() {
+    base.removeBinding(this.student);
   }
 
   authHandler = async (userData) => {
-    // 1. Look up student in firebase db
-    console.log(userData.user.email);
-    const student = await firebaseConfig.fetch(userData.user.email,
-      { context: this });
-    console.log(student);
-    // 3. Set the state of the Inventory component to reflect the current user
-    // this.setState({
-    //   user
-    // });
+    const emailRegEx = /@.*\.com/;
+    const studentId = userData.user.email.replace(emailRegEx, "");
+    const student = await base.fetch(`students/${studentId}`, { context: this });
+    this.setState({ student });
   }
 
   authenticate = provider => {
     provider = new firebase.auth.GoogleAuthProvider();
-    firebaseConfig
+    firebaseApp
       .auth()
       .signInWithPopup(provider)
       .then(function(result) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
-        // The signed-in user info.
-        var user = result.user;
-        // ...
-          console.log(token);
-          console.log(user);
+        console.log(result.credential.accessToken);
+        console.log(result.user);
       }).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
-          console.log(errorCode);
-          console.log(errorMessage);
-          console.log(email);
-          console.log(credential);
+        console.log(error.code);
+        console.log(error.message);
+        console.log(error.email);
+        console.log(error.credential);
       });
   }
 
   signOut = async () => {
     await firebase.auth().signOut();
-    this.setState({ user: null });
+    let student = { ...this.state.student };
+    student = null;
+    this.setState({ student });
+  }
+
+  sortStudent = () => {
+    const student = { ...this.state.student };
+    student.hasBeenSorted = true;
+    this.setState({ student });
+    const emailRegEx = /@.*\.com/;
+    const studentId = student.email.replace(emailRegEx, "");
+    base.post(`students/${studentId}/hasBeenSorted`, { data: student.hasBeenSorted });
   }
 
   render() {
-    if (!this.state.user) {
+    if (this.state.student && this.state.student.hasBeenSorted) {
+      console.log("fromRenderHome");
       return (
-        <Login authenticate={this.authenticate} signOut={this.signOut} />
+        <Home signOut={this.signOut} />
+      )
+    }
+
+    if (this.state.student && !this.state.student.hasBeenSorted) {
+      return (
+        <SortingHat
+          student={this.state.student}
+          sortStudent={this.sortStudent}
+          signOut={this.signOut}
+        />
       );
     }
 
-    // if (notValidStudentEmail) {
-    //   fetch user from db
-    //   alert("Womp womp.");
-    // }
-
+    console.log("fromRenderLogin");
     return (
-        <Router>
-          <SortingHat exact path="/sortingHat"
-            house="Ravenclaw"
-            user={this.state.user}
-            signOut={this.signOut}
-          />
-          <Home default path="/"
-            signOut={this.signOut}
-          />
-        </Router>
+      <Login
+        authenticate={this.authenticate}
+        signOut={this.signOut}
+      />
     );
+
+    // return (
+    //     <Router>
+    //       <SortingHat exact path="/sortingHat"
+    //         house="Ravenclaw"
+    //         student={this.state.student}
+    //         signOut={this.signOut}
+    //       />
+    //       <Home default path="/"
+    //         signOut={this.signOut}
+    //       />
+    //       <Login exact path="/login"
+    //         authenticate={this.authenticate}
+    //         signOut={this.signOut}
+    //       />
+    //     </Router>
+    // );
   }
 }
 

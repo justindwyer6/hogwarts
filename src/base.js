@@ -1,7 +1,8 @@
+import Rebase from "re-base";
 import firebase from "firebase";
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
+const firebaseApp = firebase.initializeApp({
   apiKey: "AIzaSyDphbuHRDFeYiUoUQ8F6QSCjevRpqS5CcQ",
   authDomain: "hogwarts-colfax.firebaseapp.com",
   databaseURL: "https://hogwarts-colfax.firebaseio.com",
@@ -10,9 +11,12 @@ const firebaseConfig = {
   messagingSenderId: "595184764307",
   appId: "1:595184764307:web:266a991af802d90cd11466",
   measurementId: "G-4DMQNY0YEW"
-};
+});
+
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-export default firebaseConfig;
+const base = Rebase.createClass(firebaseApp.database());
+
+export { firebaseApp };
+export default base;

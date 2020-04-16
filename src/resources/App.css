@@ -15,14 +15,17 @@
 }
 
 body {
-  background: rgb(149, 149, 149);
   font-family: 'harry_pregular';
+  /* background-image: url("https://www.pptwork.com/wp-content/uploads/2017/12/Parchment-Powerpoint-Template-2.jpg"); */
+  background-image: url("./parchment2.jpg");
+  background-size: cover;
 }
 
 .sorting-hat {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 h1 {
@@ -108,21 +111,42 @@ section.house hr {
   margin: 0;
 }
 
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .Login {
   height: 100vh;
+  width: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  text-align: center;
 
 }
 
-.Login button {
+.enter-hogwarts {
   font-family: 'harry_pregular';
   font-size: 100px;
-  animation: float 6s ease-in-out infinite;
   background: transparent;
   border: none;
   outline: none;
   cursor: pointer;
+  text-align: center;
+}
+
+.hogwarts-crest {
+  width: 200px;
+}
+
+.hogwarts-ticket {
+  width: 300px;
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
 }
