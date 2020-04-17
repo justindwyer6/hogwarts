@@ -16,13 +16,25 @@
 
 body {
   font-family: 'harry_pregular';
-  /* background-image: url("https://www.pptwork.com/wp-content/uploads/2017/12/Parchment-Powerpoint-Template-2.jpg"); */
   background-image: url("./parchment2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.sorting-hat {
+.sortingHatContainer {
+  background-image: url("./great-hall.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  position:fixed;
+  top: 0;
+  left: 0;
+}
+
+.sortingHat {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -45,11 +57,6 @@ h2 {
   margin: 0;
 }
 
-.sorting-hat img {
-  width: 500px;
-  cursor: pointer;
-}
-
 @keyframes float {
 	0% {
 		transform: translatey(0px);
@@ -65,7 +72,8 @@ h2 {
 img[alt="Sorting Hat"] {
   transform: translatey(0px);
   filter: drop-shadow(7px 15px 10px #110);
-	animation: float 6s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
+  width: 500px;
 }
 
 .messageContainer {
@@ -77,34 +85,89 @@ img[alt="Sorting Hat"] {
   align-items: center;
   justify-content: flex-start;
   margin-left: 50px;
+  background: rgba(153, 149, 147, 0.55);
+  padding: 0 20px;
+  border-radius: 10px;
 }
 
 .message {
   font-family: 'ramona_handwritingregular';
   width: 100%;
   font-size: 30px;
-  /* text-align: center; */
 }
 
 .yell {
-  font-size: 45px;
+  font-size: 70px;
+  text-align: center;
 }
 
 .typewriter {
+  visibility: hidden;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   /* border-right: .15em solid orange; The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: initial auto; /* Gives that scrolling effect as the typing happens */
   /* letter-spacing: .15em; Adjust as needed */
   animation:
-    typing 3s steps(150, end),
-    blink-caret .75s step-end infinite;
+    typing 4s steps(150, end);
+  animation-fill-mode: forwards;
+}
+
+.first {
+  /* animation-delay: 0.5s; */
+}
+
+.second {
+  animation-delay: 6s;
+}
+
+.third {
+  animation-delay: 11s;
+}
+
+.fourth {
+  animation-delay: 16s;
+}
+
+.fifth {
+  animation: typing 1s steps(50, end);
+  animation-delay: 23s;
+  animation-fill-mode: forwards;
+}
+
+.entryContainer {
+  margin: 0 auto;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.entry {
+  font-family: 'ramona_handwritingregular';
+  font-size: 30px;
+  visibility: hidden;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  /* border-right: .15em solid orange; The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: initial auto; /* Gives that scrolling effect as the typing happens */
+  animation-fill-mode: forwards;
+  text-align: center;
+  animation: typingCenter 1s steps(50, end);
+  animation-delay: 26s;
+  animation-fill-mode: forwards;
+  background: rgba(153, 149, 147, 0.55);
+  padding: 5px 20px;
+  border-radius: 10px;
 }
 
 /* The typing effect */
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from { width: 0; visibility: visible; }
+  to { width: 100%; visibility: visible; }
+}
+
+@keyframes typingCenter {
+  from { width: 0; visibility: visible; }
+  to { width: 100%; visibility: visible; }
 }
 
 span.house {
@@ -156,14 +219,15 @@ section.house hr {
 
 }
 
-.enter-hogwarts {
+.logout {
   font-family: 'harry_pregular';
-  font-size: 100px;
+  font-size: 30px;
   background: transparent;
   border: none;
   outline: none;
   cursor: pointer;
   text-align: center;
+  float: right;
 }
 
 .hogwarts-crest {
@@ -177,4 +241,8 @@ section.house hr {
 
 .floating {
   animation: float 6s ease-in-out infinite;
+}
+
+.housesHeader {
+  font-size: 45px;
 }

@@ -28,6 +28,7 @@ class App extends React.Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       if(user) {
+        console.log(user);
         this.authHandler({ user });
       }
     });
@@ -57,6 +58,11 @@ class App extends React.Component {
     const emailRegEx = /@.*\.com/;
     const studentId = userData.user.email.replace(emailRegEx, "");
     const student = await base.fetch(`students/${studentId}`, { context: this });
+    if (Object.keys(student).length === 0 && student.constructor === Object) {
+      this.signOut();
+      alert("Please sign in with your Bulldog email!");
+      return null;
+    }
     this.setState({ student });
   }
 
@@ -65,10 +71,7 @@ class App extends React.Component {
     firebaseApp
       .auth()
       .signInWithPopup(provider)
-      .then(function(result) {
-        console.log(result.credential.accessToken);
-        console.log(result.user);
-      }).catch(function(error) {
+      .then(this.authHandler).catch(function(error) {
         console.log(error.code);
         console.log(error.message);
         console.log(error.email);
@@ -86,15 +89,16 @@ class App extends React.Component {
   sortStudent = () => {
     const student = { ...this.state.student };
     student.hasBeenSorted = true;
-    this.setState({ student });
     const emailRegEx = /@.*\.com/;
     const studentId = student.email.replace(emailRegEx, "");
-    base.post(`students/${studentId}/hasBeenSorted`, { data: student.hasBeenSorted });
+    base.post(`students/${studentId}/hasBeenSorted`, { data: student.hasBeenSorted })
+      .then(
+        this.setState({ student })
+      );
   }
 
   render() {
     if (this.state.student && this.state.student.hasBeenSorted) {
-      console.log("fromRenderHome");
       return (
         <Home signOut={this.signOut} />
       )
@@ -110,7 +114,6 @@ class App extends React.Component {
       );
     }
 
-    console.log("fromRenderLogin");
     return (
       <Login
         authenticate={this.authenticate}
