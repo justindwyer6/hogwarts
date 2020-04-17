@@ -19,11 +19,12 @@ body {
   /* background-image: url("https://www.pptwork.com/wp-content/uploads/2017/12/Parchment-Powerpoint-Template-2.jpg"); */
   background-image: url("./parchment2.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .sorting-hat {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 }
@@ -46,6 +47,7 @@ h2 {
 
 .sorting-hat img {
   width: 500px;
+  cursor: pointer;
 }
 
 @keyframes float {
@@ -68,16 +70,41 @@ img[alt="Sorting Hat"] {
 
 .messageContainer {
   position: relative;
-  top: -20px;
+  top: 20px;
   z-index: -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 50px;
 }
 
 .message {
   font-family: 'ramona_handwritingregular';
   width: 100%;
-  font-size: 24px;
-  text-align: center;
-  word-break: normal;
+  font-size: 30px;
+  /* text-align: center; */
+}
+
+.yell {
+  font-size: 45px;
+}
+
+.typewriter {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  /* border-right: .15em solid orange; The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: initial auto; /* Gives that scrolling effect as the typing happens */
+  /* letter-spacing: .15em; Adjust as needed */
+  animation:
+    typing 3s steps(150, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
 }
 
 span.house {
@@ -145,6 +172,7 @@ section.house hr {
 
 .hogwarts-ticket {
   width: 300px;
+  cursor: pointer;
 }
 
 .floating {

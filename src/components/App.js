@@ -5,6 +5,7 @@ import base, { firebaseApp } from "../base.js";
 import Login from "./Login";
 import SortingHat from "./SortingHat";
 import Home from "./Home";
+import "../resources/magic-master/dist/magic.css";
 import "../resources/App.css";
 
 class App extends React.Component {
