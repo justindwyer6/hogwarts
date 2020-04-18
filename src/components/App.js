@@ -7,6 +7,7 @@ import SortingHat from "./SortingHat";
 import Home from "./Home";
 import "../resources/magic-master/dist/magic.css";
 import "../resources/App.css";
+import loadingSpinner from "../resources/loading-cat.gif";
 
 class App extends React.Component {
 
@@ -71,7 +72,9 @@ class App extends React.Component {
   render() {
     if (this.state.loading) {
       return (
-        <div>Loading...</div>
+        <div className="loadingC">
+          <img src={loadingSpinner} alt="Loading" className="loading"/>
+        </div>
       );
     }
 
