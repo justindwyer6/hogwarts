@@ -21,53 +21,11 @@ class App extends React.Component {
         console.log(user);
         await this.authHandler({ user });
       }
-      const studentId = this.state.student.email.replace(/@.*\.com/, "");
-      this.ref = base.syncState(
-        `students/${studentId}`,
-        {
-          context: this,
-          state: "student",
-          then: () => {
-            console.log("tacos");
-            let loading = this.state.loading;
-            loading = false;
-            this.setState({ loading });
-          },
-          onFailure: () => {
-            let loading = this.state.loading;
-            loading = false;
-            this.setState({ loading });
-          }
-        },
-      );
+      let loading = this.state.loading;
+      loading = false;
+      this.setState({ loading });
     });
-    // if (this.state.student != null) {
-      // console.log('hi');
-      // const studentId = this.state.student.email.replace(/@.*\.com/, "");
-      // this.ref = base.syncState(
-      //   `students/${studentId}`,
-      //   {
-      //     context: this,
-      //     state: "student",
-      //     then: () => {
-      //       console.log("tacos");
-      //       let loading = this.state.loading;
-      //       loading = false;
-      //       this.setState({ loading });
-      //     },
-      //     onFailure: () => {
-      //       let loading = this.state.loading;
-      //       loading = false;
-      //       this.setState({ loading });
-      //     }
-      //   },
-      // );
-    // }
   }
-
-  // componentWillUnmount() {
-  //   base.removeBinding(this.ref);
-  // }
 
   authHandler = async userData => {
     const studentId = userData.user.email.replace(/@.*\.com/, "");
@@ -95,9 +53,9 @@ class App extends React.Component {
 
   signOut = async () => {
     await firebase.auth().signOut();
-    let student = { ...this.state.student };
-    student = null;
+    const student = null;
     this.setState({ student });
+    console.log(`Signed Out. ${this.state.student}`)
   }
 
   sortStudent = () => {
