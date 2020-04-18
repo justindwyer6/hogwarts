@@ -1,6 +1,6 @@
 import React from "react";
-import ticket from "../resources/hogwarts-ticket.webp";
-import crest from "../resources/hogwarts-crest.png";
+import ticket from "../assets/hogwarts-ticket.webp";
+import crest from "../assets/hogwarts-crest.png";
 
 class Login extends React.Component {
   render() {

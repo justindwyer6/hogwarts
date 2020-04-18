@@ -1,6 +1,6 @@
 import React from "react";
-import hat from "../resources/Sorting_Hat.png";
-import "../resources/SortingHat.css";
+import hat from "../assets/Sorting_Hat.png";
+import "../assets/SortingHat.css";
 
 class SortingHat extends React.Component {
 

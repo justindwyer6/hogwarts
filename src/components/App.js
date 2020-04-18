@@ -5,9 +5,9 @@ import base, { firebaseApp } from "../base.js";
 import Login from "./Login";
 import SortingHat from "./SortingHat";
 import Home from "./Home";
-import "../resources/magic-master/dist/magic.css";
-import "../resources/App.css";
-import loadingSpinner from "../resources/loading-cat.gif";
+import "../assets/magic-master/dist/magic.css";
+import "../assets/App.css";
+import loadingSpinner from "../assets/loading-cat.gif";
 
 class App extends React.Component {
 
