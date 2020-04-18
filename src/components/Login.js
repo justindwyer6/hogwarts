@@ -12,8 +12,6 @@ class Login extends React.Component {
             Hogwarts School of Witchcraft and Wizardry
           </h1>
           <h2>Click your ticket to hop on the Hogwarts Express and begin the sorting ceremony.</h2>
-          {/* <button className="enter-hogwarts floating" onClick={() => this.props.authenticate()}>Enter Hogwarts</button> */}
-          {/* <button onClick={() => this.props.signOut()}>Log out!</button> */}
           <img className="hogwarts-ticket floating" src={ticket} alt="Hogwarts Ticket" onClick={() => this.props.authenticate()}></img>
         </div>
       </div>

@@ -55,7 +55,6 @@ class App extends React.Component {
     await firebase.auth().signOut();
     const student = null;
     this.setState({ student });
-    console.log(`Signed Out. ${this.state.student}`)
   }
 
   sortStudent = () => {

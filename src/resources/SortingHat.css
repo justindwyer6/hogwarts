@@ -1,0 +1,134 @@
+@font-face {
+  font-family: 'ramona_handwritingregular';
+  src: url('./ramona-font/ramonahandwritingregular-xvok-webfont.woff2') format('woff2'),
+       url('./ramona-font/ramonahandwritingregular-xvok-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.sortingHatContainer {
+  background-image: url("./great-hall.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  position:fixed;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+}
+
+.sortingHat {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.sortingHat > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img[alt="Sorting Hat"] {
+  transform: translatey(0px);
+  filter: drop-shadow(7px 15px 10px #110);
+  animation: float 6s ease-in-out infinite;
+  width: 500px;
+}
+
+.entryContainer {
+  margin: 0 auto;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.entry {
+  font-family: 'ramona_handwritingregular';
+  font-size: 25px;
+  visibility: hidden;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: initial auto; /* Gives that scrolling effect as the typing happens */
+  animation-fill-mode: forwards;
+  text-align: center;
+  animation: typingCenter 1s steps(50, end);
+  animation-delay: 26s;
+  animation-fill-mode: forwards;
+  background: rgba(153, 149, 147, 0.55);
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.messageContainer {
+  position: relative;
+  top: 20px;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 50px;
+  background: rgba(153, 149, 147, 0.55);
+  padding: 0 20px;
+  border-radius: 10px;
+}
+
+.message {
+  font-family: 'ramona_handwritingregular';
+  width: 100%;
+  font-size: 26px;
+}
+
+.yell {
+  font-size: 60px;
+  text-align: center;
+}
+
+.typewriter {
+  visibility: hidden;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  /* border-right: .15em solid orange; The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: initial auto; /* Gives that scrolling effect as the typing happens */
+  /* letter-spacing: .15em; Adjust as needed */
+  animation:
+    typing 4s steps(150, end);
+  animation-fill-mode: forwards;
+}
+
+.first {
+  /* animation-delay: 0.5s; */
+}
+
+.second {
+  animation-delay: 6s;
+}
+
+.third {
+  animation-delay: 11s;
+}
+
+.fourth {
+  animation-delay: 16s;
+}
+
+.fifth {
+  animation: typing 1s steps(50, end);
+  animation-delay: 23s;
+  animation-fill-mode: forwards;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0; visibility: visible; }
+  to { width: 100%; visibility: visible; }
+}
+
+@keyframes typingCenter {
+  from { width: 0; visibility: visible; }
+  to { width: 100%; visibility: visible; }
+}
