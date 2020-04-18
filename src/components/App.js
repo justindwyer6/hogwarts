@@ -11,52 +11,66 @@ import "../resources/App.css";
 class App extends React.Component {
 
   state = {
-    student: null
-  }
-
-  componentWillMount() {
-    if (this.state.student) {
-      const emailRegEx = /@.*\.com/;
-      const studentId = this.state.student.email.replace(emailRegEx, "");
-      this.ref = base.syncState(`students/${studentId}`, {
-        context: this,
-        state: this.state.student
-      });
-    }
+    student: null,
+    loading: true
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(async user => {
       if(user) {
         console.log(user);
-        this.authHandler({ user });
+        await this.authHandler({ user });
       }
+      const studentId = this.state.student.email.replace(/@.*\.com/, "");
+      this.ref = base.syncState(
+        `students/${studentId}`,
+        {
+          context: this,
+          state: "student",
+          then: () => {
+            console.log("tacos");
+            let loading = this.state.loading;
+            loading = false;
+            this.setState({ loading });
+          },
+          onFailure: () => {
+            let loading = this.state.loading;
+            loading = false;
+            this.setState({ loading });
+          }
+        },
+      );
     });
-    // if (this.state.student) {
-      // const emailRegEx = /@.*\.com/;
-      // const studentId = this.state.student.email.replace(emailRegEx, "");
-      // this.studentRef = base.syncState(`/students/${studentId}`, {
-      //   context: this,
-      //   state: 'student'
-      // });
+    // if (this.state.student != null) {
+      // console.log('hi');
+      // const studentId = this.state.student.email.replace(/@.*\.com/, "");
+      // this.ref = base.syncState(
+      //   `students/${studentId}`,
+      //   {
+      //     context: this,
+      //     state: "student",
+      //     then: () => {
+      //       console.log("tacos");
+      //       let loading = this.state.loading;
+      //       loading = false;
+      //       this.setState({ loading });
+      //     },
+      //     onFailure: () => {
+      //       let loading = this.state.loading;
+      //       loading = false;
+      //       this.setState({ loading });
+      //     }
+      //   },
+      // );
     // }
   }
 
-  // componentDidUpdate() {
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     if(user) {
-  //       this.authHandler({ user });
-  //     }
-  //   });
+  // componentWillUnmount() {
+  //   base.removeBinding(this.ref);
   // }
 
-  componentWillUnmount() {
-    base.removeBinding(this.student);
-  }
-
-  authHandler = async (userData) => {
-    const emailRegEx = /@.*\.com/;
-    const studentId = userData.user.email.replace(emailRegEx, "");
+  authHandler = async userData => {
+    const studentId = userData.user.email.replace(/@.*\.com/, "");
     const student = await base.fetch(`students/${studentId}`, { context: this });
     if (Object.keys(student).length === 0 && student.constructor === Object) {
       this.signOut();
@@ -72,10 +86,10 @@ class App extends React.Component {
       .auth()
       .signInWithPopup(provider)
       .then(this.authHandler).catch(function(error) {
-        console.log(error.code);
-        console.log(error.message);
-        console.log(error.email);
-        console.log(error.credential);
+        console.log(`Error code: ${error.code}`);
+        console.log(`Error message: ${error.message}`);
+        console.log(`Error email: ${error.email}`);
+        console.log(`Error credential: ${error.credential}`);
       });
   }
 
@@ -98,9 +112,15 @@ class App extends React.Component {
   }
 
   render() {
+    if (this.state.loading) {
+      return (
+        <div>Loading...</div>
+      );
+    }
+
     if (this.state.student && this.state.student.hasBeenSorted) {
       return (
-        <Home signOut={this.signOut} />
+        <Home houses={this.state.houses} signOut={this.signOut} />
       )
     }
 
@@ -120,23 +140,6 @@ class App extends React.Component {
         signOut={this.signOut}
       />
     );
-
-    // return (
-    //     <Router>
-    //       <SortingHat exact path="/sortingHat"
-    //         house="Ravenclaw"
-    //         student={this.state.student}
-    //         signOut={this.signOut}
-    //       />
-    //       <Home default path="/"
-    //         signOut={this.signOut}
-    //       />
-    //       <Login exact path="/login"
-    //         authenticate={this.authenticate}
-    //         signOut={this.signOut}
-    //       />
-    //     </Router>
-    // );
   }
 }
 
