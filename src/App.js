@@ -1,13 +1,13 @@
 import React from "react";
 // import { Router } from "@reach/router";
 import firebase from "firebase";
-import base, { firebaseApp } from "../base.js";
-import Login from "./Login";
-import SortingHat from "./SortingHat";
-import Home from "./Home";
-import "../assets/magic-master/dist/magic.css";
-import "../assets/App.css";
-import loadingSpinner from "../assets/loading-cat.gif";
+import base, { firebaseApp } from "./base.js";
+import Login from "./components/Login";
+import SortingHat from "./components/SortingHat";
+import Home from "./components/Home";
+import "./assets/magic-master/dist/magic.css";
+import "./assets/App.css";
+import loadingSpinner from "./assets/loading-cat.gif";
 
 class App extends React.Component {
 
