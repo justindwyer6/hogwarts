@@ -10,7 +10,9 @@ const CommonRoom = styled.main.attrs({
       & {
         h1 {
           ${tw`flex justify-center items-center`}
-        }}}
+        }
+      }
+    }
     div.housePoints {
       ${tw`flex flex-col justify-start items-center bg-no-repeat bg-cover text-center`}
       & {
@@ -18,9 +20,19 @@ const CommonRoom = styled.main.attrs({
           ${tw`w-full h-full`}
         }
         & {
-        h2 {
-          ${tw`text-6xl`}
-        }}}}}
+          h2 {
+            ${tw`text-5xl`}
+          }
+          h3 {
+            ${tw`text-4xl`}
+          }
+          li {
+            ${tw`text-2xl`}
+          }
+        }
+      }
+    }
+  }
 `;
 
 const HouseRoster = styled.ul.attrs({

@@ -6,7 +6,7 @@
   font-style: normal;
 }
 
-.sortingHatContainer {
+div.sortingHatContainer {
   background-image: url("./great-hall.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -20,33 +20,33 @@
   overflow: scroll;
 }
 
-.sortingHat {
+div.sortingHat {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
-.sortingHat > div {
+div.sortingHat > div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-img[alt="Sorting Hat"] {
+div.sortingHat img[alt="Sorting Hat"] {
   transform: translatey(0px);
   filter: drop-shadow(7px 15px 10px #110);
   animation: float 6s ease-in-out infinite;
   width: 500px;
 }
 
-.entryContainer {
+div.sortingHat .entryContainer {
   margin: 0 auto;
   width: fit-content;
   cursor: pointer;
 }
 
-.entry {
+div.sortingHat .entry {
   font-family: 'ramona_handwritingregular';
   font-size: 25px;
   visibility: hidden;
@@ -63,7 +63,7 @@ img[alt="Sorting Hat"] {
   border-radius: 10px;
 }
 
-.messageContainer {
+div.sortingHat .messageContainer {
   position: relative;
   top: 20px;
   z-index: -1;
@@ -77,46 +77,46 @@ img[alt="Sorting Hat"] {
   border-radius: 10px;
 }
 
-.message {
+div.sortingHat .message {
   font-family: 'ramona_handwritingregular';
   width: 100%;
   font-size: 26px;
 }
 
-.yell {
+div.sortingHat .yell {
   font-size: 60px;
   text-align: center;
 }
 
-.typewriter {
+div.sortingHat .typewriter {
   visibility: hidden;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   /* border-right: .15em solid orange; The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
-  margin: initial auto; /* Gives that scrolling effect as the typing happens */
+  margin: 1em; /* Gives that scrolling effect as the typing happens */
   /* letter-spacing: .15em; Adjust as needed */
   animation:
     typing 4s steps(150, end);
   animation-fill-mode: forwards;
 }
 
-.first {
+div.sortingHat p.first {
   /* animation-delay: 0.5s; */
 }
 
-.second {
+div.sortingHat p.second {
   animation-delay: 6s;
 }
 
-.third {
+div.sortingHat p.third {
   animation-delay: 11s;
 }
 
-.fourth {
+div.sortingHat p.fourth {
   animation-delay: 16s;
 }
 
-.fifth {
+div.sortingHat p.fifth {
   animation: typing 1s steps(50, end);
   animation-delay: 23s;
   animation-fill-mode: forwards;

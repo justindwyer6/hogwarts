@@ -28,17 +28,17 @@ class App extends React.Component {
       loading = false;
       this.setState({ loading });
     });
-    base.syncState("houses", {
-      context: this,
-      state: "houses"
-    });
-    base.syncState("students", {
-      context: this,
-      state: "students"
-    });
   }
 
   authHandler = async userData => {
+    this.housesRef = base.syncState("houses", {
+      context: this,
+      state: "houses"
+    });
+    this.studentsRef = base.syncState("students", {
+      context: this,
+      state: "students"
+    });
     const studentId = userData.user.email.replace(/@.*\.com/, "");
     const student = await base.fetch(`students/${studentId}`, { context: this });
     if (Object.keys(student).length === 0 && student.constructor === Object) {
@@ -65,8 +65,12 @@ class App extends React.Component {
 
   signOut = async () => {
     await firebase.auth().signOut();
+    base.removeBinding(this.housesRef);
+    base.removeBinding(this.studentsRef);
+    const houses = null;
     const student = null;
-    this.setState({ student });
+    const students = null;
+    this.setState({ students, houses, student });
   }
 
   sortStudent = () => {

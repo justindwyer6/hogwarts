@@ -6,6 +6,8 @@ import HousePoints from "./HousePoints"
 class Home extends React.Component {
   render() {
     return (
+      <>
+      <button className="signOut" onClick={() => this.props.signOut()}>Log Out</button>
       <div className="flex flex-col justify-center items-center">
       	<CommonRoom>
       	  <div className="header col-1-span-2">
@@ -21,6 +23,7 @@ class Home extends React.Component {
       	  )}
       	</CommonRoom>
       </div>
+      </>
     );
   }
 }

@@ -25,7 +25,7 @@ body {
   position: relative;
 }
 
-h1 {
+.Login h1 {
   font-family: 'harry_pregular';
   font-size: 100px;
   /* background: -webkit-linear-gradient(#ffda02, #544800);
@@ -36,7 +36,7 @@ h1 {
   margin: 0;
 }
 
-h2 {
+.Login h2 {
   font-size: 40px;
   margin: 0;
 }

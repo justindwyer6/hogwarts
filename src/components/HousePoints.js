@@ -18,8 +18,8 @@ class HousePoints extends React.Component {
           </h3>
           <HouseRoster>
             {Object.keys(this.props.students).map(key =>
-              (this.props.students[key].house === this.props.house.name)
-              ? <li key={key}>{this.props.students[key].firstName}</li>
+              (this.props.students[key].house === this.props.house.name && !this.props.students[key].teacher)
+              ? <li key={key}>{this.props.students[key].firstName} {this.props.students[key].lastName}</li>
               : null
             )}
           </HouseRoster>
