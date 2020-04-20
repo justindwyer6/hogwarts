@@ -9,7 +9,7 @@ class HousePoints extends React.Component {
         className="housePoints"
         style={{backgroundImage: `url(${houseCrest})`}}
       >
-        <div className="overlay bg-trans-black">
+        <div className="overlay">
           <h2>
             {this.props.house.name}
           </h2>

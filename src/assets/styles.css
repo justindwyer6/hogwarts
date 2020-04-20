@@ -8927,10 +8927,6 @@ video {
   grid-column: span 12 / span 12;
 }
 
-.col-1-span-2 {
-  grid-column: 1 / span 2;
-}
-
 .col-start-1 {
   grid-column-start: 1;
 }
@@ -19236,10 +19232,6 @@ video {
 
   .sm\:col-span-12 {
     grid-column: span 12 / span 12;
-  }
-
-  .sm\:col-1-span-2 {
-    grid-column: 1 / span 2;
   }
 
   .sm\:col-start-1 {
@@ -29550,10 +29542,6 @@ video {
     grid-column: span 12 / span 12;
   }
 
-  .md\:col-1-span-2 {
-    grid-column: 1 / span 2;
-  }
-
   .md\:col-start-1 {
     grid-column-start: 1;
   }
@@ -39862,10 +39850,6 @@ video {
     grid-column: span 12 / span 12;
   }
 
-  .lg\:col-1-span-2 {
-    grid-column: 1 / span 2;
-  }
-
   .lg\:col-start-1 {
     grid-column-start: 1;
   }
@@ -50172,10 +50156,6 @@ video {
 
   .xl\:col-span-12 {
     grid-column: span 12 / span 12;
-  }
-
-  .xl\:col-1-span-2 {
-    grid-column: 1 / span 2;
   }
 
   .xl\:col-start-1 {
