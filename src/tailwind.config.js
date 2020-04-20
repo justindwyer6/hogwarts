@@ -1,6 +1,9 @@
 module.exports = {
   theme: {
-    extend: {}
+    extend: {},
+    backgroundColor: theme => ({
+      'trans-black': 'rgba(0, 0, 0, 0.5)'
+    })
   },
   variants: {},
   plugins: [],

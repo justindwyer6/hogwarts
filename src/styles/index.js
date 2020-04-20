@@ -1,34 +1,37 @@
 import styled from "styled-components";
 import tw from "tailwind.macro";
 
-// const StyledForm = styled.main.attrs({
-//   className: "flex flex-col h-screen justify-center items-center bg-gray-100",
-// })`
-//   & {
-//     form {
-//       ${tw`bg-white text-center rounded py-8 px-5 shadow max-w-xs`}
-//     }
-//     input {
-//       ${tw`border-gray-400 mb-4 w-full border-solid border rounded py-2 px-4`}
-//     }
-//     button {
-//       ${tw`bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-blue-700 rounded`}
-//     }
-//   }
-// `
-
 const CommonRoom = styled.main.attrs({
-  className: "grid grid-cols-2 grid-rows-3 gap-2 col-1-span-2",
+  className: "grid gap-20 col-1-span-2 text-center grid-custom",
 })`
   & {
     div.header {
-      ${tw`bg-blue-700 text-6xl col-1-span-2`}
-    }
-    div.item {
-      ${tw`bg-orange-600`}
+      ${tw`flex justify-center items-center text-6xl`}
+      & {
+        h1 {
+          ${tw`flex justify-center items-center`}
+        }}}
+    div.housePoints {
+      ${tw`flex flex-col justify-start items-center bg-no-repeat bg-cover text-center`}
+      & {
+        .overlay {
+          ${tw`w-full h-full`}
+        }
+        & {
+        h2 {
+          ${tw`text-6xl`}
+        }}}}}
+`;
+
+const HouseRoster = styled.ul.attrs({
+  className: "text-center"
+})`
+  & {
+    li {
+      ${tw``}
     }
   }
-`
+`;
 
-export { CommonRoom };
+export { CommonRoom, HouseRoster };
 // export default StyledForm;

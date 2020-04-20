@@ -13,6 +13,8 @@ class App extends React.Component {
 
   state = {
     student: null,
+    houses: null,
+    students: null,
     loading: true
   }
 
@@ -25,6 +27,14 @@ class App extends React.Component {
       let loading = this.state.loading;
       loading = false;
       this.setState({ loading });
+    });
+    base.syncState("houses", {
+      context: this,
+      state: "houses"
+    });
+    base.syncState("students", {
+      context: this,
+      state: "students"
     });
   }
 
@@ -49,7 +59,8 @@ class App extends React.Component {
         console.log(`Error message: ${error.message}`);
         console.log(`Error email: ${error.email}`);
         console.log(`Error credential: ${error.credential}`);
-      });
+      }
+    );
   }
 
   signOut = async () => {
@@ -80,8 +91,13 @@ class App extends React.Component {
 
     if (this.state.student && this.state.student.hasBeenSorted) {
       return (
-        <Home houses={this.state.houses} signOut={this.signOut} />
-      )
+        <Home
+          student={this.state.student}
+          houses={this.state.houses}
+          students={this.state.students}
+          signOut={this.signOut}
+        />
+      );
     }
 
     if (this.state.student && !this.state.student.hasBeenSorted) {
