@@ -2,7 +2,7 @@ import styled from "styled-components";
 import tw from "tailwind.macro";
 
 const CommonRoom = styled.main.attrs({
-  className: "grid gap-20 col-1-span-2 text-center grid-custom",
+  className: "grid gap-15 text-center grid-custom",
 })`
   & {
     div.header {
@@ -14,10 +14,10 @@ const CommonRoom = styled.main.attrs({
       }
     }
     div.housePoints {
-      ${tw`flex flex-col justify-start items-center bg-no-repeat bg-cover text-center`}
+      ${tw`flex flex-col justify-start items-center bg-no-repeat bg-cover text-center rounded-lg m-5`}
       & {
         .overlay {
-          ${tw`w-full h-full`}
+          ${tw`w-full h-full rounded-lg`}
         }
         & {
           h2 {
@@ -27,7 +27,7 @@ const CommonRoom = styled.main.attrs({
             ${tw`text-4xl`}
           }
           li {
-            ${tw`text-2xl`}
+            ${tw`text-3xl`}
           }
         }
       }

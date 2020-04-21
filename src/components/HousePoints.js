@@ -3,7 +3,7 @@ import { HouseRoster } from "../styles/index"
 
 class HousePoints extends React.Component {
   render() {
-    const houseCrest = require(`../assets/${this.props.house.name}.jpg`);
+    const houseCrest = require(`../assets/${this.props.house.name}.png`);
     return (
       <div
         className="housePoints"

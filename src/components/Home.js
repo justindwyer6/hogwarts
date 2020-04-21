@@ -9,10 +9,10 @@ class Home extends React.Component {
       <>
       <button className="signOut" onClick={() => this.props.signOut()}>Log Out</button>
       <div className="flex flex-col justify-center items-center">
+        <div className="header flex justify-center items-center text-6xl mb-10">
+          <h1>{this.props.student.house} Common Room</h1>
+        </div>
       	<CommonRoom>
-      	  <div className="header col-1-span-2">
-      	    <h1>{this.props.student.house} Common Room</h1>
-      	  </div>
       	  {Object.keys(this.props.houses).map(key =>
       	    <HousePoints
       	      key={key}

@@ -1,14 +1,16 @@
 .header {
   grid-column: 1 / span 2;
+  margin-top: 50px;
 }
 
 .grid-custom {
-  grid-template-rows: 200px 400px 400px;
-  grid-template-columns: 400px 400px;
+  grid-auto-rows: minmax(500px, auto);
+  grid-template-columns: 500px 500px;
 }
 
 .overlay {
-  background-color: rgba(255, 255, 255, 0.637);
+  background-color: rgba(141, 141, 141, 0.26);
+  filter: drop-shadow(1px 2px 0px white);
 }
 
 .signOut {
