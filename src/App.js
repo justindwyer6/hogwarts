@@ -12,7 +12,7 @@ import loadingSpinner from "./assets/loading-cat.gif";
 class App extends React.Component {
 
   state = {
-    student: null,
+    user: null,
     houses: null,
     students: null,
     loading: true
@@ -21,7 +21,6 @@ class App extends React.Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged(async user => {
       if(user) {
-        console.log(user);
         await this.authHandler({ user });
       }
       let loading = this.state.loading;
@@ -40,13 +39,13 @@ class App extends React.Component {
       state: "students"
     });
     const studentId = userData.user.email.replace(/@.*\.com/, "");
-    const student = await base.fetch(`students/${studentId}`, { context: this });
-    if (Object.keys(student).length === 0 && student.constructor === Object) {
+    const user = await base.fetch(`students/${studentId}`, { context: this });
+    if (Object.keys(user).length === 0 && user.constructor === Object) {
       this.signOut();
       alert("Please sign in with your Bulldog email!");
       return null;
     }
-    this.setState({ student });
+    this.setState({ user });
   }
 
   authenticate = provider => {
@@ -68,20 +67,26 @@ class App extends React.Component {
     base.removeBinding(this.housesRef);
     base.removeBinding(this.studentsRef);
     const houses = null;
-    const student = null;
+    const user = null;
     const students = null;
-    this.setState({ students, houses, student });
+    this.setState({ students, houses, user });
   }
 
   sortStudent = () => {
-    const student = { ...this.state.student };
-    student.hasBeenSorted = true;
+    const user = { ...this.state.user };
+    user.hasBeenSorted = true;
     const emailRegEx = /@.*\.com/;
-    const studentId = student.email.replace(emailRegEx, "");
-    base.post(`students/${studentId}/hasBeenSorted`, { data: student.hasBeenSorted })
+    const studentId = user.email.replace(emailRegEx, "");
+    base.post(`students/${studentId}/hasBeenSorted`, { data: user.hasBeenSorted })
       .then(
-        this.setState({ student })
+        this.setState({ user })
       );
+  }
+
+  updatePoints = (points, index) => {
+    const houses = { ...this.state.houses };
+    houses[index].points = points;
+    this.setState({ houses })
   }
 
   render() {
@@ -93,21 +98,22 @@ class App extends React.Component {
       );
     }
 
-    if (this.state.student && this.state.student.hasBeenSorted) {
+    if (this.state.user && this.state.user.hasBeenSorted) {
       return (
         <Home
-          student={this.state.student}
+          user={this.state.user}
           houses={this.state.houses}
           students={this.state.students}
+          updatePoints={this.updatePoints}
           signOut={this.signOut}
         />
       );
     }
 
-    if (this.state.student && !this.state.student.hasBeenSorted) {
+    if (this.state.user && !this.state.user.hasBeenSorted) {
       return (
         <SortingHat
-          student={this.state.student}
+          user={this.state.user}
           sortStudent={this.sortStudent}
           signOut={this.signOut}
         />

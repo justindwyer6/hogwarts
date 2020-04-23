@@ -5,16 +5,16 @@ import "../assets/SortingHat.css";
 class SortingHat extends React.Component {
 
   renderMessage() {
-    if (this.props.student.house === "Slytherin") {
+    if (this.props.user.house === "Slytherin") {
       return "Ambitious, clever, resourceful. . ."
     }
-    if (this.props.student.house === "Hufflepuff") {
+    if (this.props.user.house === "Hufflepuff") {
       return "Loyal, hardworking, honest, genuine. . ."
     }
-    if (this.props.student.house === "Gryffindor") {
+    if (this.props.user.house === "Gryffindor") {
       return "Courageous, trusting, confident. . ."
     }
-    if (this.props.student.house === "Ravenclaw") {
+    if (this.props.user.house === "Ravenclaw") {
       return "Intelligent, wise, creative, original. . ."
     }
   }
@@ -28,14 +28,14 @@ class SortingHat extends React.Component {
               <img src={hat} alt="Sorting Hat"/>
               <div className="entryContainer" onClick={() => this.props.sortStudent()}>
                 <p className="entry">
-                  Click here to enter the {this.props.student.house} common room!
+                  Click here to enter the {this.props.user.house} common room!
                 </p>
               </div>
             </div>
             <div>
               <div className="messageContainer">
                 <p className="message typewriter first">
-                  Aaah, {`${this.props.student.firstName} of the ${this.props.student.lastName} family` || "yes"}. . .
+                  Aaah, {`${this.props.user.firstName} of the ${this.props.user.lastName} family` || "yes"}. . .
                 </p>
                 <p className="message typewriter second">
                 You are an interesting one. Hmmm. . .
@@ -47,7 +47,7 @@ class SortingHat extends React.Component {
                   Yes, definitely seems like a. . .
                 </p>
                 <p className="message typewriter fifth yell" onClick={() => this.props.sortStudent()}>
-                  {`${this.props.student.house.toUpperCase()}!`}
+                  {`${this.props.user.house.toUpperCase()}!`}
                 </p>
               </div>
             </div>
