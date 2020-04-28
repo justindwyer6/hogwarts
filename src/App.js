@@ -66,10 +66,9 @@ class App extends React.Component {
     await firebase.auth().signOut();
     base.removeBinding(this.housesRef);
     base.removeBinding(this.studentsRef);
-    const houses = null;
     const user = null;
     const students = null;
-    this.setState({ students, houses, user });
+    this.setState({ students, user });
   }
 
   sortStudent = () => {
